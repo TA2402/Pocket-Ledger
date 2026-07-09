@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+<title>Pocket Ledger</title>
+
+<!-- Home-screen install: Android/Chrome (manifest) + iOS Safari (meta tags below) -->
+<link rel="manifest" href="./manifest.json" />
+<meta name="theme-color" content="#1F3864" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Pocket Ledger" />
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+<link rel="icon" href="./icons/icon-192.png" />
+
+<style>
+  html, body { margin: 0; padding: 0; background: #F7F5F0; }
+  #root { min-height: 100vh; }
+</style>
+
+<!-- React 18 + Babel standalone: transpiles the JSX in-browser, so this
+     deploys as plain static files — no build step, no npm, works straight
+     from a GitHub Pages branch. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.24.7/babel.min.js"></script>
+</head>
+<body>
+<div id="root">
+  <div style="padding:40px 20px;text-align:center;font-family:-apple-system,system-ui,sans-serif;color:#8B8577;">
+    Loading Pocket Ledger…
+  </div>
+</div>
+
+<script src="./storage-shim.js"></script>
+<script type="text/babel" data-presets="react" src="./app.js"></script>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("./sw.js").catch(() => {
+        // Offline caching is a nice-to-have — app still works online without it.
+      });
+    });
+  }
+</script>
+</body>
+</html>

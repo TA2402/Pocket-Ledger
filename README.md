@@ -1,4 +1,3 @@
-[README.md](https://github.com/user-attachments/files/29851719/README.md)
 # Pocket Ledger — GitHub Pages deploy
 
 Static, no-build version of the Pocket Ledger app (React + Babel loaded from
@@ -17,6 +16,18 @@ on your phone's home screen like an app.
   what's sitting in the "waiting for Excel" queue at any moment.
 - Everything else — Log/Import/Export/Status/Settings, the CSV importer, the
   KPI status-string parser — is unchanged.
+
+## What's new in v2 (this package)
+
+- **Status tab now shows per-category "left this month"** (groceries, eating
+  out, transport, ...) with progress bars. It reads the new `cats=` field in
+  the Dashboard B136 KPI cell (tracker file _5_4 or later) and subtracts
+  anything logged in the app but not yet exported.
+- **Comma-decimal proof**: Dutch Excel emits `316,02` — the parser now accepts
+  both comma and period decimals.
+- **NL bank keywords** added to the auto-categorize rules (Albert Heijn,
+  AH to go, Jumbo, Amazing Oriental, doner/kebap, "Supermar").
+- `CACHE_NAME` bumped to `pocket-ledger-v2`.
 
 ## 1. Push to a repo
 
